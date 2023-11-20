@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-         token: {{ secrets.SA_TOKEN }}
+         token: ${{ secrets.SA_TOKEN }}
       - run: npm install
       - run: npm run deploy

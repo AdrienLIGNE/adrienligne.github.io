@@ -1,0 +1,9 @@
+name: Deploy website
+run-name: deploying website 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm install
+      - run: npm run deploy

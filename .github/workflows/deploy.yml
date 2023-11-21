@@ -9,8 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run:
-          echo "${{ secrets.SA_TOKEN }}" > token.txt
-          gh auth login --with-token < token.txt &&
-          npm install &&
-          npm run deploy
+        with:
+          token: '${{ secrets.SA_TOKEN }}'
+      - run: npm install
+      - run: npm run deploy

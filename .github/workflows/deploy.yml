@@ -10,7 +10,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm install &&
-          gh auth login --with-token < <<EOF
-          ${{ secrets.SA_TOKEN }}
-          EOF&&
+          gh auth login --with-token ${{ secrets.SA_TOKEN }} &&
           npm run deploy

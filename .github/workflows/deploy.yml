@@ -8,8 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - run: git remote set-url origin "https://${{ secrets.SA_TOKEN }}@github.com/adrienligne/adrienligne.github.io.git"
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.SA_TOKEN }}
       - run: npm install
       - run: npm run deploy

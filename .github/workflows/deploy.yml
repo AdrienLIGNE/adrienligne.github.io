@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm install &&
-          npm run deploy &&
           git config --global user.password "${{ secrets.SA_TOKEN }}" &&
           git config --global user.email "${{ vars.SA_EMAIL }}" &&
-          git config --global user.name "${{ vars.SA_NAME }}"
+          git config --global user.name "${{ vars.SA_NAME }}" &&
+          npm run deploy

@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: git remote set-url origin "https://${{ secrets.SA_TOKEN }}@github.com/adrienligne/adrienligne.github.io.git"
+      - run: git config --global user.password "${{ secrets.SA_TOKEN }}"
+      - run: git config --global user.email "${{ vars.SA_EMAIL }}"
+      - run: git config --global user.name "${{ vars.SA_NAME }}"
       - run: npm install
       - run: npm run deploy

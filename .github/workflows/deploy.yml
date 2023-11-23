@@ -1,17 +1,38 @@
-name: Deploy website
-run-name: deploying website 🚀
+name: CI/CD
+
 on:
   push:
-    branches:
-      - main
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
     steps:
-      - run: git config --global url.https://${{ secrets.SA_TOKEN }}@github.com/.insteadOf https://github.com/
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          token: '${{ secrets.SA_TOKEN }}'
-      - run: git remote set-url origin "https://${{ secrets.SA_TOKEN }}@github.com/adrienligne/adrienligne.github.io.git"
-      - run: npm install
-      - run: npm run deploy
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        run: |
+          git remote set-url origin "https://${{ secrets.SA_TOKEN }}@github.com/adrienligne/adrienligne.github.io.git"
+          npm run deploy
+        env:
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+          repository: ${{ github.repository }}

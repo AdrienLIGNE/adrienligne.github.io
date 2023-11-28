@@ -30,6 +30,8 @@ jobs:
       - name: Deploy
         run: |
           git remote set-url origin "https://${{ secrets.SA_TOKEN }}@github.com/adrienligne/adrienligne.github.io.git"
+          git config --global user.email ${{ vars.SA_EMAIL }}
+          git config --global user.name ${{ vars.SA_NAME }}
           npm run deploy
         env:
           user_name: 'github-actions[bot]'

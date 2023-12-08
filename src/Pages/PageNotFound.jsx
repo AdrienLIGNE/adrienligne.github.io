@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NavBar from '../Components/Navbar';
+import Navbar from '../Components/Navbar';
 
 
 export default function NotFoundErrorPage() {
     return (
         <>
-            <NavBar/>
+            <Navbar/>
             <section className="flex flex-col items-center font-outfit pt-20 text-center h-screen text-zinc-800">
 
 

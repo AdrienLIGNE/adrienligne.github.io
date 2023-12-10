@@ -4,7 +4,7 @@ const ProjectCard = ({ project }) => {
 
     return (
         <div className="max-w-sm w-30p lg:max-w-full lg:flex m-5 p-3 min-w-max">
-            <div className="w-full shadow-md shadow-gray-700 bg-white rounded-2xl p-4 flex flex-col justify-between leading-normal bg-card-bg bg-cover ">
+            <div className="w-full shadow-md shadow-gray-700 rounded-2xl p-4 flex flex-col justify-between leading-normal bg-card-bg bg-cover ">
                 <div className="mb-8">
                     <p className="text-sm text-gray-600 flex items-center"></p>
                     <div className="text-gray-600 font-bold text-xl mb-2 cursor-pointer hover:text-blue-900 cursor-pointer w-min" onClick={() => window.location.href = project.html_url} >{project.name}</div>
